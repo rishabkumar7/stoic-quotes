@@ -32,6 +32,15 @@
         .quote-card footer {
             font-size: 18px;
         }
+        /* Grey footer styles */
+        .creator-footer {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: #888;
+        }
     </style>
 </head>
 <body>
@@ -39,5 +48,6 @@
         <p>{{ quote }}</p>
         <footer>- {{ author }}</footer>
     </div>
+    <footer class="creator-footer">Made with ❤️ by <a href="https://rishabkumar.com/">Rishab</a></footer>
 </body>
 </html>

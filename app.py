@@ -13,10 +13,10 @@ def home():
     random_quote = random.choice(quotes)
     return render_template('index.html', quote=random_quote['quote'], author=random_quote['author'])
 
-@app.route('/api/quote', methods=['GET'])
+@app.route('/api/random', methods=['GET'])
 def get_quote():
     random_quote = random.choice(quotes)
-    return jsonify(random_quote)
+    return jsonify(random_quote), 200
 
 if __name__ == '__main__':
     app.run()
