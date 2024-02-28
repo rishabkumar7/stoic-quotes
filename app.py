@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 import random
 import json
 
@@ -21,6 +21,16 @@ def get_quote():
 
 @app.route('/api/search/<word>', methods=['GET'])
 def search(word):
+    matching_quotes = [quote for quote in quotes if word.lower() in quote['quote'].lower()]
+    if not matching_quotes:
+        return jsonify({'response': 200, 'message': 'No quotes matched the query.'})
+    return jsonify({'response': 200, 'results': matching_quotes})
+
+
+@app.route('/api/word', methods=['POST'])
+def word():
+    data = request.get_json()
+    word = data.get('word', '')
     matching_quotes = [quote for quote in quotes if word.lower() in quote['quote'].lower()]
     if not matching_quotes:
         return jsonify({'response': 200, 'message': 'No quotes matched the query.'})
