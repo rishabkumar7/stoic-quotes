@@ -1,5 +1,8 @@
 # Stoic Quotes
 
+[![Pytest](https://github.com/rishabkumar7/stoic-quotes/actions/workflows/run_test.yml/badge.svg)](https://github.com/rishabkumar7/stoic-quotes/actions/workflows/run_test.yml)
+
+
 A simple Flask app that displays random Stoic quotes from stoics: Marcus Aurelius, Seneca and Epictetus.
 
 ## Using the API
