@@ -19,8 +19,9 @@ def get_quote():
     return jsonify(random_quote), 200
 
 
-@app.route('/api/search/<word>', methods=['GET'])
-def search(word):
+@app.route('/api/search', methods=['GET'])
+def search():
+    word = request.args.get('word', '')
     matching_quotes = [quote for quote in quotes if word.lower() in quote['quote'].lower()]
     if not matching_quotes:
         return jsonify({'response': 200, 'message': 'No quotes matched the query.'})
