@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, send_from_directory
 import random
 import json
 from azure.cosmos import CosmosClient
@@ -26,6 +26,13 @@ container = database.get_container_client(container_name)
 
 # Query for all documents
 documents = list(container.read_all_items())
+
+
+# Load Browser Favicon Icon
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                        'favicon.ico',mimetype='image/vnd.microsoft.icon')
 
 
 @app.route('/')
