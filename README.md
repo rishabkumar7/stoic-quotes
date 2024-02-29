@@ -46,6 +46,15 @@ GET https://stoic-quotes.azurewebsites.net/api/search?word=<YOUR-WORD>
 }
 ```
 
+## Architecture
+
+This project is hosted on Azure, it uses:
+
+- Azure App Service
+- Azure CosmosDB
+
+![Stoic Quotes Architecture](./stoic-quotes-architecture.png)
+
 ## Author
 
 - Twitter: [@rishabincloud](https://x.com/rishabincloud)
