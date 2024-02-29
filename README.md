@@ -14,7 +14,7 @@ This app also exposes a public API which you can use to fetch random Stoic quote
 #### Get a random Stoic quote
 
 ```
-GET https://stoic-qoutes.azurewebsites.net/api/random
+GET https://stoic-quotes.azurewebsites.net/api/random
 ```
 
 ##### Example JSON response
@@ -29,7 +29,7 @@ GET https://stoic-qoutes.azurewebsites.net/api/random
 #### Get a list of Stoic quotes based on a word
 
 ```
-GET https://stoic-qoutes.azurewebsites.net/api/<your_word>
+GET https://stoic-quotes.azurewebsites.net/api/search?word=<YOUR-WORD>
 ```
 
 ##### Example JSON response
