@@ -17,6 +17,11 @@
             height: 100vh;
             margin: 0;
         }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
         .quote-card {
             background-color: #111;
@@ -45,13 +50,56 @@
             font-size: 14px;
             color: #888;
         }
+
+        .quote-card {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        #new-quote-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: block; /* Make the button a block element */
+            font-size: 16px;
+            margin: 4px auto; /* Center the button */
+            cursor: pointer;
+            border-radius: 4px;
+            transition-duration: 0.4s;
+        }
+
+        #new-quote-button:hover {
+            background-color: #536DFE;
+            color: white;
+        }
     </style>
 </head>
 <body>
+    <div class="container">
     <div class="quote-card">
-        <p>{{ quote }}</p>
-        <footer>- {{ author }}</footer>
+        <div id="quote-content">
+            <p id="quote">{{ quote }}</p>
+            <footer id ="author">- {{ author }}</footer>
+        </div>
+    </div>
+    <button id="new-quote-button">Get New</button>
     </div>
     <footer class="creator-footer">Made with ❤️ by <a href="https://rishabkumar.com/">Rishab</a></footer>
+    <script>
+        document.getElementById('new-quote-button').addEventListener('click', updateQuote);
+
+        function updateQuote() {
+            fetch('/api/random')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('quote').textContent = data.quote;
+                document.getElementById('author').textContent = '- ' + data.author;
+        });
+}
+    </script>
 </body>
 </html>
