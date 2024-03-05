@@ -1,6 +1,7 @@
 import pytest
 from flask import json
-from app import app
+from app import app, container
+
 
 @pytest.fixture
 def client():
@@ -8,7 +9,14 @@ def client():
     with app.test_client() as client:
         yield client
 
-def test_home_status_code(client):
+from unittest.mock import patch 
+
+@patch.object(container, 'read_all_items', return_value=[
+    {'id': 'test_doc_1', 'quotes': [{'quote': 'Test Quote 1', 'author': 'Test Author'}]},
+    {'id': 'test_doc_2', 'quotes': [{'quote': 'Another Test Quote', 'author': 'Another Author'}]}
+])
+
+def test_home_status_code(read_all_items, client):
     response = client.get('/')
     assert response.status_code == 200
 
