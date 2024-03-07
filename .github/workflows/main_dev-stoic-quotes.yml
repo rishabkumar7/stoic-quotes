@@ -2,7 +2,7 @@
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 # More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
 
-name: Build and deploy Python app to Azure Web App - stoic-quotes
+name: Build and deploy Python app to Azure Web App - dev-stoic-quotes
 
 on:
   push:
@@ -65,14 +65,14 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_92D18EC2E5684185B4F84D6312D878C3 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E288F86527B74A25A57E1995BCE37F13 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_87C89FCCADF14076BE06CC0E94764E69 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_A1EFBA0432FA40D28CCD7C7DBF988251 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_9A27573562B24840A4318E4A55ABA8C2 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_316522B5FDD54B9B9FC5CA4E61EB9A84 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-          app-name: 'stoic-quotes'
+          app-name: 'dev-stoic-quotes'
           slot-name: 'Production'
           
