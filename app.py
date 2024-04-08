@@ -11,7 +11,19 @@ load_dotenv()
 
 
 # Initialize FastAPI
-app = FastAPI()
+app = FastAPI(
+    title="Stoic Quotes API",
+    summary="The very best Stoic quotes from the three great Roman Stoics: Marcus Aurelius, Seneca, and Epictetus.",
+    version="0.0.1",
+    contact={
+        "name": "Rishab Kumar",
+        "url": "http://rishabkumar.com",
+    },
+    license_info={
+        "name": "MIT License",
+        "url": "https://opensource.org/license/mit",
+    },
+)
 
 # Initialize Cosmos Client
 url = os.getenv("AZURE_COSMOSDB_URL")
@@ -85,7 +97,29 @@ async def search(word: Optional[str] = None):
     return {"response": 200, "results": matching_quotes}
 
 
-#Build Pagination endpoint
+# Build Pagination endpoint
+@app.get('/api/quotes', description="Return a paginated list of quotes.")
+async def pagination(page: Optional[int] = 1, limit: Optional[int] = 10):
+    """
+    Return a paginated list of quotes.
+
+    - **page**: The page number to return.
+    - **limit**: The number of quotes to return per page.
+
+    This endpoint returns a paginated list of quotes in JSON format.
+    """
+    # Calculate the start and end index
+    start_index = (page - 1) * limit
+    end_index = page * limit
+
+    # Query for all documents
+    documents = list(container.read_all_items())
+
+    # Extract all quotes from the documents
+    all_quotes = [quote for document in documents for quote in document['quotes']]
+
+    # Return the paginated list of quotes
+    return {"response": 200, "results": all_quotes[start_index:end_index]}
 
 if __name__ == '__main__':
     app.run()
